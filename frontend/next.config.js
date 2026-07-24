@@ -6,15 +6,6 @@ const nextConfig = {
       { protocol: 'https', hostname: '**' },
     ],
   },
-  // Serve data/ from the project root via /data path
-  async rewrites() {
-    return [
-      {
-        source: '/data/:path*',
-        destination: '/api/data-proxy/:path*',
-      },
-    ];
-  },
 };
 
 module.exports = nextConfig;

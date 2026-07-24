@@ -1,14 +1,16 @@
-/** Data fetching layer — reads pipeline output from the data/ directory. */
+/** Data fetching layer — reads pipeline output from data/ directory or GitHub Raw. */
 import type { DailyDigest, DigestIndex } from "./types";
 
-const DATA_BASE = process.env.NEXT_PUBLIC_DATA_URL || "/data";
+// In production, fetch from GitHub Raw; in development, use local data proxy
+const GITHUB_RAW = "https://raw.githubusercontent.com/okayokayooo793-del/ai-pulse/master/data";
+const DATA_BASE = process.env.NEXT_PUBLIC_DATA_URL || GITHUB_RAW;
 
 async function fetchJSON<T>(path: string): Promise<T | null> {
   try {
     const url = `${DATA_BASE}/${path}`;
     const res = await fetch(url, {
-      next: { revalidate: 3600 },
       headers: { Accept: "application/json" },
+      cache: "no-store",
     });
     if (!res.ok) return null;
     return (await res.json()) as T;
