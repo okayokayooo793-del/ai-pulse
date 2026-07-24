@@ -1,21 +1,19 @@
-/** Data fetching layer. Tries local static files first, then GitHub Raw as fallback. */
+/** Data fetching — local /data/ first, GitHub Raw as fallback. */
 import type { DailyDigest, DigestIndex } from "./types";
 
-// Local static path (served from public/data/)
 const LOCAL_BASE = "/data";
-// GitHub Raw as remote fallback
 const GITHUB_RAW = "https://raw.githubusercontent.com/okayokayooo793-del/ai-pulse/master/data";
 
 async function fetchJSON<T>(path: string): Promise<T | null> {
-  // Try local first (data bundled with the site)
+  // Local first (bundled in public/data/)
   try {
     const res = await fetch(`${LOCAL_BASE}/${path}`, {
       headers: { Accept: "application/json" },
     });
     if (res.ok) return (await res.json()) as T;
-  } catch { /* fall through to remote */ }
+  } catch { /* fall through */ }
 
-  // Fallback: GitHub Raw (for runtime updates without redeploy)
+  // GitHub Raw fallback
   try {
     const res = await fetch(`${GITHUB_RAW}/${path}`, {
       headers: { Accept: "application/json" },
