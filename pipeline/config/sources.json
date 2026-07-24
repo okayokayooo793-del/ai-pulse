@@ -1,0 +1,76 @@
+{
+  "rss_feeds": [
+    {"name": "OpenAI Blog", "url": "https://openai.com/blog/rss.xml", "category": "industry"},
+    {"name": "Anthropic Blog", "url": "https://www.anthropic.com/blog/rss.xml", "category": "industry"},
+    {"name": "Google AI Blog", "url": "https://blog.research.google/feeds/posts/default", "category": "research"},
+    {"name": "Meta AI Blog", "url": "https://ai.meta.com/blog/feed/", "category": "research"},
+    {"name": "Hugging Face Blog", "url": "https://huggingface.co/blog/feed.xml", "category": "tools"},
+    {"name": "arXiv cs.AI", "url": "https://rss.arxiv.org/rss/cs.AI", "category": "research"},
+    {"name": "arXiv cs.CL", "url": "https://rss.arxiv.org/rss/cs.CL", "category": "research"},
+    {"name": "arXiv cs.CV", "url": "https://rss.arxiv.org/rss/cs.CV", "category": "research"},
+    {"name": "The Verge AI", "url": "https://www.theverge.com/ai-artificial-intelligence/rss/index.xml", "category": "industry"},
+    {"name": "TechCrunch AI", "url": "https://techcrunch.com/category/artificial-intelligence/feed/", "category": "industry"},
+    {"name": "VentureBeat AI", "url": "https://venturebeat.com/category/ai/feed/", "category": "industry"},
+    {"name": "MIT Technology Review AI", "url": "https://www.technologyreview.com/feed/", "category": "research"},
+    {"name": "机器之心", "url": "https://jiqizhixin.com/rss", "category": "industry"},
+    {"name": "量子位", "url": "https://www.qbitai.com/feed", "category": "industry"},
+    {"name": "Simon Willison Blog", "url": "https://simonwillison.net/atom/everything/", "category": "tools"},
+    {"name": "Lil'Log (Lilian Weng)", "url": "https://lilianweng.github.io/feed.xml", "category": "research"},
+    {"name": "Stratechery", "url": "https://stratechery.com/feed/", "category": "opinion"},
+    {"name": "Import AI (Jack Clark)", "url": "https://importai.substack.com/feed", "category": "opinion"},
+    {"name": "The Batch (Andrew Ng)", "url": "https://www.deeplearning.ai/the-batch/rss/", "category": "industry"}
+  ],
+  "rsshub_sources": {
+    "base_url": "https://rsshub.app",
+    "twitter_accounts": [
+      {"handle": "OpenAI", "category": "industry"},
+      {"handle": "AnthropicAI", "category": "industry"},
+      {"handle": "GoogleDeepMind", "category": "research"},
+      {"handle": "MetaAI", "category": "research"},
+      {"handle": "kaboroevich", "category": "opinion"},
+      {"handle": "ylecun", "category": "research"},
+      {"handle": "AndrewYNg", "category": "industry"},
+      {"handle": "jimfan", "category": "research"},
+      {"handle": "_akhaliq", "category": "research"},
+      {"handle": "EMostaque", "category": "industry"},
+      {"handle": "svpino", "category": "tools"},
+      {"handle": "ai_zona", "category": "industry"},
+      {"handle": "TheRundownAI", "category": "industry"},
+      {"handle": "aisolopreneur", "category": "tools"},
+      {"handle": "OfficialLoganK", "category": "tools"},
+      {"handle": "LangChainAI", "category": "tools"},
+      {"handle": "huggingface", "category": "tools"},
+      {"handle": "weights_biases", "category": "tools"},
+      {"handle": "ollama", "category": "tools"},
+      {"handle": "jiqizhixin", "category": "industry"},
+      {"handle": "PEchino", "category": "industry"}
+    ],
+    "youtube_channels": [
+      {"channel_id": "UCbfYPyITQ-7l4upoX8nvctg", "name": "Two Minute Papers", "category": "research"},
+      {"channel_id": "UCZHmQk67mS1gfbbCTnODkBg", "name": "Yannic Kilcher", "category": "research"},
+      {"channel_id": "UCNJ1Ymd5yFuUPW21nNBhx0A", "name": "AI Explained", "category": "research"},
+      {"channel_id": "UCrMLzxRnwJHxjw3fYGxT3Og", "name": "Matthew Berman", "category": "tools"},
+      {"channel_id": "UCsBjURrPoezykLs9EqgamOA", "name": "Fireship", "category": "tools"},
+      {"channel_id": "UC0rqucBdTuFTjJiefW5t-IQ", "name": "The AI Advantage", "category": "tools"},
+      {"channel_id": "UCWN3xxRkmTPmbKwht9FuE5A", "name": "Siraj Raval", "category": "industry"},
+      {"channel_id": "UCm5tsAsVhT42q7fv2q0Aq5Q", "name": "AI Jason", "category": "tools"}
+    ]
+  },
+  "reddit_subs": [
+    {"name": "MachineLearning", "category": "research", "min_upvotes": 50},
+    {"name": "LocalLLaMA", "category": "tools", "min_upvotes": 30},
+    {"name": "singularity", "category": "opinion", "min_upvotes": 100},
+    {"name": "artificial", "category": "industry", "min_upvotes": 20},
+    {"name": "ChatGPT", "category": "industry", "min_upvotes": 100}
+  ],
+  "hackernews": {
+    "enabled": true,
+    "min_score": 30,
+    "max_items": 30
+  },
+  "github_trending": {
+    "enabled": true,
+    "languages": ["python", "javascript", "typescript", "rust"],
+    "since": "daily"
+  }
+}

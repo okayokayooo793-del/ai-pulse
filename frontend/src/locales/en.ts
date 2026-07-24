@@ -1,0 +1,47 @@
+export const en = {
+  title: "AI Pulse — Daily AI News",
+  subtitle: "Curated AI news from 40+ sources, updated daily at 08:00 Beijing time",
+  search: "Search",
+  searchPlaceholder: "Search AI news...",
+  language: "中文",
+  theme: { light: "Light", dark: "Dark", system: "System" },
+  nav: { home: "Home", archive: "Archive", search: "Search" },
+  digest: {
+    todayDigest: "Today's Digest",
+    dailyObservation: "Daily Observation",
+    topStories: "Top Stories",
+    allNews: "All News",
+    noArticles: "No articles yet for this date.",
+    loading: "Loading AI news...",
+    error: "Failed to load news. Please try again later.",
+  },
+  categories: {
+    all: "All",
+    research: "Research",
+    industry: "Industry",
+    tools: "Tools & OSS",
+    opinion: "Opinion",
+  },
+  sources: {
+    all: "All Sources",
+    twitter: "X / Twitter",
+    youtube: "YouTube",
+    rss: "RSS",
+    reddit: "Reddit",
+    hackernews: "Hacker News",
+    github: "GitHub",
+  },
+  misc: {
+    readMore: "Read more",
+    minutesAgo: "ago",
+    justNow: "just now",
+    score: "Score",
+    crossSource: "Also reported by",
+    archive: "Browse past daily digests",
+    noResults: "No results found",
+    backToHome: "Back to home",
+    poweredBy: "Powered by AI · Data refreshed daily",
+  },
+};
+
+export type LocaleStrings = typeof en;

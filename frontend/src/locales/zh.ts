@@ -1,0 +1,47 @@
+import type { LocaleStrings } from "./en";
+
+export const zh: LocaleStrings = {
+  title: "AI Pulse — 每日 AI 新闻",
+  subtitle: "从 40+ 信息源精选 AI 新闻，每天北京时间 08:00 更新",
+  search: "搜索",
+  searchPlaceholder: "搜索 AI 新闻...",
+  language: "EN",
+  theme: { light: "浅色", dark: "深色", system: "跟随系统" },
+  nav: { home: "首页", archive: "归档", search: "搜索" },
+  digest: {
+    todayDigest: "今日摘要",
+    dailyObservation: "每日观察",
+    topStories: "头条新闻",
+    allNews: "全部新闻",
+    noArticles: "该日期暂无文章。",
+    loading: "正在加载 AI 新闻...",
+    error: "加载失败，请稍后重试。",
+  },
+  categories: {
+    all: "全部",
+    research: "研究",
+    industry: "产业",
+    tools: "工具 & 开源",
+    opinion: "观点",
+  },
+  sources: {
+    all: "全部来源",
+    twitter: "X / Twitter",
+    youtube: "YouTube",
+    rss: "RSS",
+    reddit: "Reddit",
+    hackernews: "Hacker News",
+    github: "GitHub",
+  },
+  misc: {
+    readMore: "阅读全文",
+    minutesAgo: "前",
+    justNow: "刚刚",
+    score: "评分",
+    crossSource: "其他来源也报道了",
+    archive: "浏览历史每日摘要",
+    noResults: "未找到结果",
+    backToHome: "返回首页",
+    poweredBy: "AI 驱动 · 数据每日自动更新",
+  },
+};

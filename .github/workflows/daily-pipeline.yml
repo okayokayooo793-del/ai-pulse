@@ -1,0 +1,60 @@
+name: Daily AI News Pipeline
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 08:00 Beijing time
+  workflow_dispatch:      # Manual trigger
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          cd pipeline
+          pip install -r requirements.txt
+
+      - name: Run pipeline
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          LLM_MODEL: ${{ vars.LLM_MODEL || 'deepseek-chat' }}
+          LLM_BASE_URL: ${{ vars.LLM_BASE_URL || 'https://api.deepseek.com/v1' }}
+          RSSHUB_BASE_URL: ${{ vars.RSSHUB_BASE_URL || 'https://rsshub.app' }}
+          SCORE_THRESHOLD: ${{ vars.SCORE_THRESHOLD || '5.0' }}
+          MAX_ITEMS: ${{ vars.MAX_ITEMS || '80' }}
+          TZ: Asia/Shanghai
+        run: |
+          cd pipeline
+          python run.py
+
+      - name: Commit and push data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if [ -n "$(git status data/ --porcelain)" ]; then
+            git add data/
+            git commit -m "📰 Daily AI News Digest: $(TZ='Asia/Shanghai' date +%Y-%m-%d)"
+            git push
+            echo "DATA_UPDATED=true" >> $GITHUB_ENV
+          else
+            echo "No new data to commit"
+            echo "DATA_UPDATED=false" >> $GITHUB_ENV
+          fi
+
+      - name: Trigger Vercel redeploy
+        if: env.DATA_UPDATED == 'true' && vars.VERCEL_DEPLOY_HOOK != ''
+        run: |
+          curl -X POST "${{ vars.VERCEL_DEPLOY_HOOK }}"
