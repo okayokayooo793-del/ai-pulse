@@ -1,0 +1,20 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel Deploy
+        if: ${{ secrets.VERCEL_DEPLOY_HOOK != '' }}
+        run: curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
+
+      - name: Trigger via Vercel Git Integration
+        run: |
+          echo "Vercel Git Integration should auto-deploy on push to master."
+          echo "If auto-deploy is not working, check: https://vercel.com/dashboard"
+          echo "Make sure the GitHub repo is connected in Vercel project settings."
