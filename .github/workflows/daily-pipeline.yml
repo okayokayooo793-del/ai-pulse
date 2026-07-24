@@ -39,13 +39,19 @@ jobs:
           cd pipeline
           python run.py
 
+      - name: Copy data to frontend public directory
+        run: |
+          cp -r data/* frontend/public/data/
+          echo "Data synced to frontend/public/data/"
+
       - name: Commit and push data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          if [ -n "$(git status data/ --porcelain)" ]; then
-            git add data/
+          # Stage both data locations
+          git add data/ frontend/public/data/
+          if [ -n "$(git status --porcelain)" ]; then
             git commit -m "📰 Daily AI News Digest: $(TZ='Asia/Shanghai' date +%Y-%m-%d)"
             git push
             echo "DATA_UPDATED=true" >> $GITHUB_ENV

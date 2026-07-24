@@ -1,22 +1,29 @@
-/** Data fetching layer — reads pipeline output from data/ directory or GitHub Raw. */
+/** Data fetching layer. Tries local static files first, then GitHub Raw as fallback. */
 import type { DailyDigest, DigestIndex } from "./types";
 
-// In production, fetch from GitHub Raw; in development, use local data proxy
+// Local static path (served from public/data/)
+const LOCAL_BASE = "/data";
+// GitHub Raw as remote fallback
 const GITHUB_RAW = "https://raw.githubusercontent.com/okayokayooo793-del/ai-pulse/master/data";
-const DATA_BASE = process.env.NEXT_PUBLIC_DATA_URL || GITHUB_RAW;
 
 async function fetchJSON<T>(path: string): Promise<T | null> {
+  // Try local first (data bundled with the site)
   try {
-    const url = `${DATA_BASE}/${path}`;
-    const res = await fetch(url, {
+    const res = await fetch(`${LOCAL_BASE}/${path}`, {
       headers: { Accept: "application/json" },
-      cache: "no-store",
     });
-    if (!res.ok) return null;
-    return (await res.json()) as T;
-  } catch {
-    return null;
-  }
+    if (res.ok) return (await res.json()) as T;
+  } catch { /* fall through to remote */ }
+
+  // Fallback: GitHub Raw (for runtime updates without redeploy)
+  try {
+    const res = await fetch(`${GITHUB_RAW}/${path}`, {
+      headers: { Accept: "application/json" },
+    });
+    if (res.ok) return (await res.json()) as T;
+  } catch { /* fall through */ }
+
+  return null;
 }
 
 export async function fetchIndex(): Promise<DigestIndex> {
